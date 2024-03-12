@@ -89,8 +89,6 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-CSRF_TRUSTED_ORIGINS = ["http://localhost:81"]  # for docker
-
 CORS_ORIGIN_ALLOW_ALL = True
 
 ROOT_URLCONF = 'email_app.urls'
