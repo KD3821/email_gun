@@ -23,7 +23,8 @@ If campaign is outdated or canceled by Admin then service will stop sending camp
 Swagger-UI page (DRF-Spectacular): http://127.0.0.1/api/schema/swagger-ui/</li>
 <li>
 If integration with Authorization Service (OAuth) is needed then check the 'accounts' app of Django for token models, middleware & permissions</li>
-<li></ul>
+<li>
+Next plans for the project: integrate Stripe Payments and OAuth Authorization</li></ul>
 
 
 <p align="center"><img src="https://github.com/kd3821/email_service/blob/main/img/edit_customer.png?raw=true"></p>
