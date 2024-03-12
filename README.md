@@ -1,9 +1,9 @@
-# email_service
+# notification_service
 
-<h1 align="center">Email Service</h1>
+<h1 align="center">Notification Service</h1>
 <p align="center"><img src="https://img.shields.io/badge/made_by-KD3821-maroon"></p>
 
-<p align="center"><b>Emailing customers used to be hard - IT'S NOT ANYMORE!</b></p><br>
+<p align="center"><b>Reaching your customers used to be hard - IT'S NOT ANYMORE!</b></p><br>
 <ul>
 <li>
 Set ENV with PG_PASSWORD: export POSTGRES_PASSWORD=EmailApp123</li>
