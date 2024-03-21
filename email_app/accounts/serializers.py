@@ -36,7 +36,6 @@ class LoginSerializer(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=255, min_length=3)
     password = serializers.CharField(max_length=68, min_length=6, write_only=True)
     username = serializers.CharField(max_length=255, min_length=3, read_only=True)
-    tokens = serializers.SerializerMethodField()
 
     class Meta:
         model = User
@@ -46,14 +45,6 @@ class LoginSerializer(serializers.ModelSerializer):
             'username',
             'tokens'
         ]
-
-    def get_tokens(self, obj):
-        user = User.objects.get(email=obj['email'])
-        token_data = user.tokens()
-        return {
-            'access': token_data.get('access'),
-            'refresh': token_data.get('refresh')
-        }
 
     def validate(self, attrs):
         email = attrs.get('email', '')
@@ -72,7 +63,11 @@ class LoginSerializer(serializers.ModelSerializer):
             raise AuthenticationFailed({
                 'detail': ['Email еще не подтвержден.']
             })
-        return attrs
+        return {
+            'email': user.email,
+            'username': user.username,
+            'tokens': user.tokens()
+        }
 
 
 class LogoutSerializer(serializers.Serializer):
