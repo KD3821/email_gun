@@ -25,7 +25,7 @@ class RegisterSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError(
                 {'email': ['Некорректный email']}
             )
-        attrs['email'] = email.lower()  # try
+        attrs['email'] = email.lower()
         return attrs
 
     def create(self, validated_data):
@@ -49,9 +49,10 @@ class LoginSerializer(serializers.ModelSerializer):
 
     def get_tokens(self, obj):
         user = User.objects.get(email=obj['email'])
+        token_data = user.tokens()
         return {
-            'access': user.tokens()['access'],
-            'refresh': user.tokens()['refresh']
+            'access': token_data.get('access'),
+            'refresh': token_data.get('refresh')
         }
 
     def validate(self, attrs):
@@ -71,11 +72,7 @@ class LoginSerializer(serializers.ModelSerializer):
             raise AuthenticationFailed({
                 'detail': ['Email еще не подтвержден.']
             })
-        return {
-            'email': user.email,
-            'username': user.username,
-            'tokens': user.tokens
-        }
+        return attrs
 
 
 class LogoutSerializer(serializers.Serializer):
